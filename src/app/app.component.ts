@@ -77,7 +77,7 @@ export class AppComponent {
       this.currentScore += 1; //Add point to score
     } else {
       //If user got the question wrong set this feedback message
-      this.answerFeedback = `Icorrect! The correct answer was "${
+      this.answerFeedback = `Incorrect! The correct answer was "${
         this.triviaQuestions[this.activeQuestion].correct_answer
       }".`;
     }
@@ -147,10 +147,13 @@ export class AppComponent {
                     'Error loading trivia questions, err:' + err.toString()
                   );
                   reject(err);
+                  return;
                 });
             })
             .catch((err) => {
               console.log('Error loading session token, err:' + err.toString());
+              reject(err);
+              return;
             });
 
           return;
